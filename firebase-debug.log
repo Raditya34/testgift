@@ -1,0 +1,88 @@
+[debug] [2025-07-31T07:46:16.006Z] ----------------------------------------------------------------------
+[debug] [2025-07-31T07:46:16.015Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ASUS\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-07-31T07:46:16.016Z] CLI Version:   14.11.2
+[debug] [2025-07-31T07:46:16.016Z] Platform:      win32
+[debug] [2025-07-31T07:46:16.016Z] Node Version:  v24.4.1
+[debug] [2025-07-31T07:46:16.016Z] Time:          Thu Jul 31 2025 14:46:16 GMT+0700 (Western Indonesia Time)
+[debug] [2025-07-31T07:46:16.016Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-31T07:46:16.020Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-31T07:46:16.021Z] > authorizing via signed-in user (2210631160034@student.unsika.ac.id)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Pembelajaran\Test Love
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-07-31T07:46:47.999Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:46:48.000Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:46:48.002Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-07-31T07:46:48.002Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"TestLove"}
+[debug] [2025-07-31T07:46:49.368Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-07-31T07:46:49.368Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"testlove-6a508"}
+[debug] [2025-07-31T07:46:59.054Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:46:59.054Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:46:59.055Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-07-31T07:46:59.055Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"TestLove-03411"}
+[debug] [2025-07-31T07:46:59.566Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-07-31T07:46:59.566Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"testlove-03411"}
+[debug] [2025-07-31T07:47:06.049Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:06.049Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:06.050Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-07-31T07:47:06.050Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"TestLove-d03411"}
+[debug] [2025-07-31T07:47:07.255Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-07-31T07:47:07.255Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"testlove-d03411"}
+[debug] [2025-07-31T07:47:13.799Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:13.799Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:13.800Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-07-31T07:47:13.800Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"testLove-d03411"}
+[debug] [2025-07-31T07:47:14.169Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-07-31T07:47:14.169Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"testlove-d03411"}
+[debug] [2025-07-31T07:47:22.745Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:22.745Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:22.746Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-07-31T07:47:22.746Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"testlove-d034112"}
+[debug] [2025-07-31T07:47:23.183Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-07-31T07:47:23.183Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_AVAILABLE","suggestedProjectId":"testlove-d034112"}
+[debug] [2025-07-31T07:47:32.781Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:32.782Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:32.782Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2025-07-31T07:47:32.782Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"testlove-d034112","name":"testlove"}
+[debug] [2025-07-31T07:47:33.225Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2025-07-31T07:47:33.225Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.5988469929970681137"}
+[debug] [2025-07-31T07:47:33.226Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:33.226Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:33.226Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5988469929970681137 [none]
+[debug] [2025-07-31T07:47:34.373Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5988469929970681137 200
+[debug] [2025-07-31T07:47:34.373Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5988469929970681137 {"name":"operations/create_project.global.5988469929970681137"}
+[debug] [2025-07-31T07:47:34.874Z] [Project Creation Poller] Retrying task index 0
+[debug] [2025-07-31T07:47:34.874Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:34.874Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:34.874Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5988469929970681137 [none]
+[debug] [2025-07-31T07:47:35.157Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5988469929970681137 200
+[debug] [2025-07-31T07:47:35.157Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5988469929970681137 {"name":"operations/create_project.global.5988469929970681137","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"45785720696","projectId":"testlove-d034112","lifecycleState":"ACTIVE","name":"testlove","createTime":"2025-07-31T07:47:34.800755Z","parent":{"type":"organization","id":"954209810993"}}}
+[debug] [2025-07-31T07:47:35.160Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:35.160Z] Checked if tokens are valid: true, expires at: 1753951123150
+[debug] [2025-07-31T07:47:35.160Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/testlove-d034112:addFirebase [none]
+[debug] [2025-07-31T07:47:35.771Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/testlove-d034112:addFirebase 429
+[debug] [2025-07-31T07:47:35.771Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/testlove-d034112:addFirebase {"error":{"code":429,"message":"Quota exceeded for quota metric 'Provision requests' and limit 'Provision requests per minute' of service 'firebase.googleapis.com' for consumer 'project_number:563584335869'.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"RATE_LIMIT_EXCEEDED","domain":"googleapis.com","metadata":{"quota_location":"global","service":"firebase.googleapis.com","quota_limit":"ProvisionPerMinutePerProject","quota_unit":"1/min/{project}","consumer":"projects/563584335869","quota_limit_value":"60","quota_metric":"firebase.googleapis.com/provision_requests"}},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Request a higher quota limit.","url":"https://cloud.google.com/docs/quotas/help/request_increase"}]}]}}
+[debug] [2025-07-31T07:47:35.772Z] Request to https://firebase.googleapis.com/v1beta1/projects/testlove-d034112:addFirebase had HTTP Error: 429, Quota exceeded for quota metric 'Provision requests' and limit 'Provision requests per minute' of service 'firebase.googleapis.com' for consumer 'project_number:563584335869'.
+[debug] [2025-07-31T07:47:35.859Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/testlove-d034112:addFirebase had HTTP Error: 429, Quota exceeded for quota metric 'Provision requests' and limit 'Provision requests per minute' of service 'firebase.googleapis.com' for consumer 'project_number:563584335869'.
+    at responseToError (C:\Users\ASUS\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:52:12)
+    at RetryOperation._fn (C:\Users\ASUS\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.

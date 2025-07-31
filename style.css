@@ -1,0 +1,333 @@
+:root {
+    --bg-gradient-start: #fdf5f6; /* Very light rosy pink */
+    --bg-gradient-end: #ffebee;   /* Lighter peach/cream */
+    --box-color: #f8bbd0;        /* Soft dusty rose */
+    --box-lid-shadow: rgba(0, 0, 0, 0.2);
+    --text-color-dark: #880e4f;   /* Deep romantic red/purple */
+    --text-color-light: #4a148c;  /* Deep violet for card text */
+    --card-bg: #fffcf8;           /* Off-white/cream for cards */
+    --card-border: #fce4ec;       /* Lighter pink border for cards */
+    --button-bg: #e57373;         /* Muted red for buttons */
+    --button-hover-bg: #d32f2f;
+    /* Menghilangkan variabel warna pita
+    --ribbon-color: #e57373;
+    --ribbon-shadow: rgba(0,0,0,0.3);
+    */
+    --shadow-soft: rgba(0, 0, 0, 0.1);
+    --pop-up-message-bg: #fff;
+    --pop-up-message-text: #e57373; /* Reddish pink for pop-up text */
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--text-color-dark);
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* --- Gift Box Styling (Closed State) --- */
+.gift-box {
+    width: 280px;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 1.2s ease-in-out, opacity 1.2s ease-in-out;
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 10px 20px var(--shadow-soft));
+}
+
+.gift-box.closed .box-lid {
+    background-color: var(--box-color);
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 5px 15px var(--box-lid-shadow);
+    transform-origin: bottom center;
+    transition: transform 1.2s ease-in-out;
+    z-index: 2;
+}
+
+.gift-box.closed .box-body {
+    background-color: var(--box-color);
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 5px 15px var(--box-lid-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.gift-box.closed .box-body p {
+    font-family: 'Parisienne', cursive;
+    color: var(--text-color-dark);
+    font-size: 1.8em;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 0; /* Sesuaikan margin-top jika diperlukan karena tidak ada pita */
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+    z-index: 1;
+    position: relative;
+}
+
+/* Menghilangkan styling pita dan busur */
+/*
+.ribbon {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: var(--ribbon-color);
+    top: calc(70% / 2 - 15px);
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 3;
+    box-shadow: inset 0 0 8px var(--ribbon-shadow);
+    transition: transform 1.2s ease-in-out;
+}
+
+.ribbon-bow {
+    width: 50px;
+    height: 50px;
+    background-color: var(--ribbon-color);
+    border-radius: 50%;
+    position: absolute;
+    top: calc(30% - 25px);
+    left: calc(50% - 25px);
+    transform: rotate(45deg);
+    z-index: 4;
+    box-shadow: 0 3px 10px var(--ribbon-shadow);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 72% 57%, 81% 91%, 50% 70%, 19% 91%, 28% 57%, 2% 35%, 39% 35%);
+    transition: transform 1.2s ease-in-out;
+}
+*/
+
+/* New: Pop-up Message Styling */
+.pop-up-message {
+    position: absolute;
+    width: 80%;
+    height: 60%;
+    background-color: var(--pop-up-message-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Parisienne', cursive;
+    font-size: 1.5em;
+    color: var(--pop-up-message-text);
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1;
+    top: 80%;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: top 0.8s ease-out 0.8s, opacity 0.8s ease-out 0.8s, transform 0.8s ease-out 0.8s;
+}
+
+/* --- Open State Animations --- */
+.gift-box.opening {
+    transform: translateY(-80px) scale(0.7);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+
+.gift-box.opening .box-lid {
+    transform: rotateX(100deg) translateY(-20px) translateZ(50px);
+    transition: transform 0.8s ease-in-out;
+}
+
+/* Menghilangkan animasi pita saat dibuka */
+/*
+.gift-box.opening .ribbon {
+    transform: translateY(-50%) translateZ(10px);
+}
+
+.gift-box.opening .ribbon-bow {
+    transform: rotate(45deg) translateY(-30px);
+}
+*/
+
+.gift-box.opening .pop-up-message {
+    top: 20%;
+    opacity: 1;
+    transform: scale(1);
+    z-index: 5;
+}
+
+
+/* --- Compliment Content Styling (Opened State) --- */
+.compliment-content {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    width: 85%;
+    max-width: 950px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 1s ease-in-out 1.5s, transform 1s ease-in-out 1.5s;
+    position: absolute;
+    z-index: 1;
+}
+
+.compliment-content.visible {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 5;
+}
+
+.compliment-content h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color-dark);
+    margin-bottom: 40px;
+    font-size: 3em;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.15);
+    letter-spacing: 1px;
+}
+
+.compliment-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--button-bg) var(--card-bg);
+}
+.compliment-cards-container::-webkit-scrollbar {
+    width: 8px;
+}
+.compliment-cards-container::-webkit-scrollbar-track {
+    background: var(--card-bg);
+    border-radius: 10px;
+}
+.compliment-cards-container::-webkit-scrollbar-thumb {
+    background-color: var(--button-bg);
+    border-radius: 10px;
+    border: 2px solid var(--card-bg);
+}
+
+
+.compliment-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    padding: 25px;
+    width: 300px;
+    box-shadow: 0 6px 20px var(--shadow-soft);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 220px;
+}
+
+.compliment-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    background-color: #fff9f9;
+}
+
+.compliment-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color-dark);
+    margin-top: 0;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.compliment-card p {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color-light);
+    font-size: 1.25em;
+    line-height: 1.7;
+    flex-grow: 1;
+    font-weight: 300;
+}
+
+.close-button {
+    background-color: var(--button-bg);
+    color: var(--white);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.close-button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .compliment-content {
+        padding: 25px;
+        width: 90%;
+    }
+    .compliment-content h2 {
+        font-size: 2.5em;
+    }
+    .compliment-cards-container {
+        max-height: 350px;
+        gap: 20px;
+    }
+    .compliment-card {
+        width: 100%;
+        max-width: 350px;
+        padding: 20px;
+    }
+    .gift-box {
+        width: 220px;
+        height: 160px;
+    }
+    .gift-box.closed .box-body p {
+        font-size: 1.5em;
+    }
+}

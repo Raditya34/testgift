@@ -1,83 +1,93 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const giftBox = document.getElementById('giftBox');
-    const popUpMessage = document.getElementById('popUpMessage'); // Get the new pop-up element
-    const complimentContent = document.getElementById('complimentContent');
-    const complimentCardsContainer = document.getElementById('complimentCards');
+    const whisperBox = document.getElementById('whisperBox'); // Renamed from giftBox
+    const popUpMessage = document.getElementById('popUpMessage');
+    const encouragementContent = document.getElementById('encouragementContent'); // Renamed from complimentContent
+    const encouragementCardsContainer = document.getElementById('encouragementCards'); // Renamed from complimentCards
     const closeContentBtn = document.getElementById('closeContentBtn');
 
-    // Array of your compliments/sweet messages
-    const compliments = [
+    // Array of empowering and healing messages
+    // UBAH INI dengan pesan yang paling tulus dan relevan untuknya!
+    const messages = [
         {
-            title: "Your Smile is My Sunshine",
-            message: "Setiap kali kamu tersenyum, rasanya dunia ini jadi lebih cerah. Itu sihir, ya?"
+            title: "Untuk Hati yang Hebat",
+            message: "Mungkin ada rasa sakit yang pernah datang, tapi ingat, itu tidak pernah bisa mengurangi betapa berharganya dirimu."
         },
         {
-            title: "Lost in Your Eyes",
-            message: "Ada apa ya di matamu? Kok bisa bikin aku lupa tujuan awal pas lagi ngobrol sama kamu."
+            title: "Kekuatanmu Mengagumkan",
+            message: "Aku tahu kamu kuat, mungkin lebih dari yang kamu kira. Setiap luka membuatmu semakin tangguh."
         },
         {
-            title: "Melody of Your Voice",
-            message: "Suaramu itu kayak lagu favorit yang nggak pernah bosen didengerin, candu!"
+            title: "Perasaanmu Valid",
+            message: "Tidak apa-apa untuk merasa apa yang kamu rasakan. Semua emosi itu valid, dan kamu berhak merasakannya."
         },
         {
-            title: "Your Laugh, My Favorite Sound",
-            message: "Tawamu itu lho, bikin aku ikut senyum lebar. Beneran, itu suara paling manis."
+            title: "Cahaya Dalam Dirimu",
+            message: "Ada cahaya istimewa dalam dirimu yang tidak bisa dipadamkan oleh apapun. Biarkan itu bersinar lagi."
         },
         {
-            title: "The Comfort of Your Presence",
-            message: "Deket kamu, rasanya nyaman banget. Kayak nemu tempat pulang padahal belum pergi ke mana-mana."
+            title: "Kamu Tidak Sendiri",
+            message: "Di setiap langkahmu, di setiap proses pemulihan, ingatlah bahwa kamu tidak sendirian. Ada yang peduli."
         },
         {
-            title: "Simply Irresistible",
-            message: "Gimana caranya kamu bisa se-menarik ini? Aku jadi penasaran terus sama kamu."
+            title: "Waktu Akan Menyembuhkan",
+            message: "Percayalah, waktu punya caranya sendiri untuk menyembuhkan. Pelan-pelan saja, tidak perlu terburu-buru."
         },
         {
-            title: "You're a True Gem",
-            message: "Jujur, kamu itu langka. Baiknya, ramahnya, semuanya deh. Bikin pengen kenal lebih jauh."
+            title: "Pelajaran Berharga",
+            message: "Setiap pengalaman, bahkan yang menyakitkan, membentukmu menjadi pribadi yang lebih bijaksana dan luar biasa."
         },
         {
-            title: "My Day's Highlight",
-            message: "Rasanya hariku tuh belum lengkap kalau belum ada interaksi sama kamu."
+            title: "Dirimu Berharga",
+            message: "Nilaimu tidak ditentukan oleh apa yang terjadi padamu. Kamu istimewa, utuh, dan sangat berharga."
         },
         {
-            title: "A Little Thought For You",
-            message: "Barusan kepikiran kamu. Semoga apa pun yang lagi kamu kerjain lancar ya, semangat!"
+            title: "Fokus pada Dirimu",
+            message: "Ini saatnya kamu fokus pada kebahagiaanmu sendiri. Kamu berhak mendapatkan semua hal baik di dunia ini."
         },
         {
-            title: "Curiosity About You",
-            message: "Setiap hari ada aja hal baru dari kamu yang bikin aku makin pengen tahu lebih banyak."
+            title: "Masa Depan Menanti",
+            message: "Mungkin sulit melihatnya sekarang, tapi ada banyak kebahagiaan dan petualangan baru yang menanti di depan."
+        },
+        {
+            title: "Aku Percaya Padamu",
+            message: "Aku percaya kamu akan melewati ini. Kamu punya kekuatan untuk bangkit lebih tinggi."
+        },
+        {
+            title: "Sedikit Tentangmu...",
+            message: "Aku melihat ketulusanmu, caramu peduli, dan itu adalah hal yang sangat langka dan indah."
+        },
+        {
+            title: "Senyummu Itu...",
+            message: "Melihat senyummu kembali, meskipun hanya sedikit, sudah cukup untuk mencerahkan hari-hariku."
         }
     ];
 
-    // Function to create and append compliment cards
-    function createComplimentCards() {
-        compliments.forEach(compliment => {
+    // Function to create and append message cards
+    function createMessageCards() {
+        messages.forEach(msg => {
             const card = document.createElement('div');
-            card.classList.add('compliment-card');
+            card.classList.add('encouragement-card');
 
             const title = document.createElement('h3');
-            title.textContent = compliment.title;
+            title.textContent = msg.title;
             card.appendChild(title);
 
             const message = document.createElement('p');
-            message.textContent = compliment.message;
+            message.textContent = msg.message;
             card.appendChild(message);
 
-            complimentCardsContainer.appendChild(card);
+            encouragementCardsContainer.appendChild(card);
         });
     }
 
-    // Event listener for opening the gift box
-    giftBox.addEventListener('click', () => {
+    // Event listener for opening the box
+    whisperBox.addEventListener('click', () => {
         // Step 1: Start box opening animation and message pop-up
-        giftBox.classList.add('opening');
-        // No need to set popUpMessage.classList.remove('hidden') here directly
-        // The CSS animation will handle its appearance with a delay
-
+        whisperBox.classList.add('opening');
+       
         // Step 2: After box fades out and message pops up, hide box, and prepare for main content
         setTimeout(() => {
-            giftBox.classList.add('hidden'); // Completely hide the box
-            // popUpMessage will fade out in the next step
+            whisperBox.classList.add('hidden'); // Completely hide the box
         }, 1200); // Wait for initial box opening + some buffer
 
         // Step 3: After pop-up message shows, hide it and display main content
@@ -85,31 +95,31 @@ document.addEventListener('DOMContentLoaded', () => {
             popUpMessage.style.opacity = '0'; // Start fading out the pop-up message
             popUpMessage.style.transform = 'scale(0.8)'; // Shrink it slightly as it fades
 
-            // Now display the main compliment content
-            complimentContent.classList.remove('hidden');
-            complimentContent.classList.add('visible'); // Trigger transition for main content
+            // Now display the main encouragement content
+            encouragementContent.classList.remove('hidden');
+            encouragementContent.classList.add('visible'); // Trigger transition for main content
         }, 3000); // Adjust this delay (e.g., 1.2s box open + 0.8s pop-up + 1s for viewing)
 
     });
 
     // Event listener for closing the content
     closeContentBtn.addEventListener('click', () => {
-        complimentContent.classList.remove('visible'); // Start fading out main content
+        encouragementContent.classList.remove('visible'); // Start fading out main content
         
         // Hide pop-up message if it somehow lingered (unlikely but good for reset)
         popUpMessage.style.opacity = '0'; 
         popUpMessage.style.transform = 'scale(0.5)';
-        popUpMessage.style.top = '80%'; // Reset position
+        popUpMessage.style.top = '85%'; // Reset position to deeper inside box
 
         setTimeout(() => {
-            complimentContent.classList.add('hidden'); // Hide main content
-            giftBox.classList.remove('hidden'); // Make box visible again
-            giftBox.classList.remove('opening'); // Reset box animation state
+            encouragementContent.classList.add('hidden'); // Hide main content
+            whisperBox.classList.remove('hidden'); // Make box visible again
+            whisperBox.classList.remove('opening'); // Reset box animation state
             // Ensure pop-up message is hidden until next open
             popUpMessage.style.display = 'flex'; // Reset display for next interaction (hidden by opacity & scale)
         }, 1200); // Match this timeout to CSS transition duration for closing main content
     });
 
-    // Initial load of compliment cards
-    createComplimentCards();
+    // Initial load of messages
+    createMessageCards();
 });

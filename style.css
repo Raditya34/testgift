@@ -1,22 +1,24 @@
 :root {
-    /* Soothing and Elegant Color Palette */
-    --bg-gradient-start: #e0f2f7;   /* Light blue/cyan */
-    --bg-gradient-end: #e8eaf6;     /* Light lavender */
-    --box-color: #bbdefb;          /* Soft light blue */
-    --box-lid-shadow: rgba(0, 0, 0, 0.15);
-    --text-color-dark: #3f51b5;     /* Deeper indigo for main titles */
-    --text-color-light: #673ab7;    /* Purple for card text */
-    --card-bg: #ffffff;             /* Pure white for cards */
-    --card-border: #90caf9;         /* Muted blue for card borders */
-    --button-bg: #81c784;           /* Gentle green for buttons */
-    --button-hover-bg: #66bb6a;
-    --pop-up-message-bg: #fff9c4;   /* Light yellow for pop-up */
-    --pop-up-message-text: #fbc02d; /* Warm yellow/orange for pop-up text */
-    --shadow-soft: rgba(0, 0, 0, 0.08);
+    /* Richer, Deeper Romantic Palette */
+    --bg-gradient-start: #e1bee7; /* Light violet */
+    --bg-gradient-end: #c5cae9;   /* Soft blue-purple */
+    --box-color: #8e24aa;         /* Deep purple for box */
+    --box-lid-shadow: rgba(0, 0, 0, 0.3);
+    --text-color-dark: #4a148c;   /* Very deep purple for main titles */
+    --text-color-light: #6a1b9a;  /* Purple for card text */
+    --card-bg: #fffde7;           /* Creamy white for cards */
+    --card-border: #d1c4e9;       /* Light lavender border */
+    --button-bg: #ab47bc;         /* Muted purple for buttons */
+    --button-hover-bg: #8e24aa;
+    --pop-up-message-bg: #ffecb3; /* Light gold for pop-up */
+    --pop-up-message-text: #fbc02d; /* Warm gold for pop-up text */
+    --shadow-soft: rgba(0, 0, 0, 0.15);
+    --inner-glow-color: #ffccbc; /* Light peach/pink for inner glow */
+    --white: #ffffff;
 }
 
 body {
-    font-family: 'Lora', serif; /* A classic, readable serif font */
+    font-family: 'Lora', serif;
     background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     margin: 0;
     display: flex;
@@ -25,6 +27,25 @@ body {
     min-height: 100vh;
     overflow: hidden;
     color: var(--text-color-dark);
+    position: relative;
+}
+
+/* Background Animation (Subtle pulsating effect) */
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulseBackground 15s infinite alternate ease-in-out;
+    z-index: 0;
+}
+
+@keyframes pulseBackground {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0.8; }
 }
 
 .main-container {
@@ -34,31 +55,48 @@ body {
     width: 100%;
     height: 100vh;
     position: relative;
+    z-index: 1;
 }
 
-/* --- Whisper Box Styling (Closed State) --- */
+/* --- Whisper Box Styling (Initial Closed State) --- */
 .whisper-box {
-    width: 300px; /* Slightly wider box */
-    height: 220px; /* Slightly taller */
+    width: 300px;
+    height: 220px;
     perspective: 1000px;
     cursor: pointer;
     position: relative;
-    transition: transform 1.2s ease-in-out, opacity 1.2s ease-in-out;
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
     transform-style: preserve-3d;
-    filter: drop-shadow(0 12px 25px var(--shadow-soft)); /* Softer, larger shadow */
+    filter: drop-shadow(0 15px 30px var(--shadow-soft));
+    border-radius: 15px;
+    background-color: var(--box-color);
+}
+
+.whisper-box .box-glow { /* Inner glow effect when opened */
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle at center, var(--inner-glow-color) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    z-index: 0;
 }
 
 .whisper-box.closed .box-lid {
     background-color: var(--box-color);
     width: 100%;
-    height: 35%; /* Lid is a bit taller for more opening effect */
+    height: 35%;
     position: absolute;
     top: 0;
     left: 0;
-    border-radius: 15px 15px 0 0; /* More rounded corners */
-    box-shadow: 0 5px 15px var(--box-lid-shadow);
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 5px 20px var(--box-lid-shadow);
     transform-origin: bottom center;
-    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Custom cubic-bezier for smoother motion */
+    transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth lid opening */
     z-index: 2;
 }
 
@@ -69,8 +107,8 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    border-radius: 0 0 15px 15px; /* More rounded corners */
-    box-shadow: 0 5px 15px var(--box-lid-shadow);
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 5px 20px var(--box-lid-shadow);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,170 +120,212 @@ body {
 }
 
 .whisper-box.closed .box-body p {
-    font-family: 'Dancing Script', cursive; /* Elegant script font for the message */
-    color: var(--text-color-dark);
-    font-size: 2em; /* Larger, more inviting text */
+    font-family: 'Dancing Script', cursive;
+    color: var(--white);
+    font-size: 2.2em;
     font-weight: normal;
     text-align: center;
-    margin: 0; /* Remove default margin for better centering */
-    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
+    margin: 0;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     z-index: 1;
     position: relative;
 }
 
-/* Pop-up Message Styling */
+/* Pop-up Message Styling (The message that emerges) */
 .pop-up-message {
     position: absolute;
-    width: 90%; /* Wider message card */
-    height: 70%; /* Taller message card */
+    width: 90%;
+    height: 70%;
     background-color: var(--pop-up-message-bg);
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Lora', serif; /* Consistent font for message content */
-    font-size: 1.6em;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8em;
     color: var(--pop-up-message-text);
     text-align: center;
-    padding: 15px;
+    padding: 20px;
     box-sizing: border-box;
     z-index: 1;
-    top: 85%; /* Start from deeper inside the box body */
+    top: 85%; /* Start from deep inside the box */
     opacity: 0;
     transform: scale(0.6);
-    transition: top 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.8s, opacity 1s ease-out 0.8s, transform 1s ease-out 0.8s; /* Bounce effect */
+    /* Animation: emerge from box with a bounce, delayed after lid starts opening */
+    transition: top 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.8s, opacity 1s ease-out 0.8s, transform 1s ease-out 0.8s;
 }
 
-/* --- Open State Animations --- */
+/* --- Open State Animations (When whisper-box is clicked) --- */
 .whisper-box.opening {
-    transform: translateY(-100px) scale(0.7); /* Move up more, shrink more */
+    transform: translateY(-120px) scale(0.6); /* Move up and shrink */
     opacity: 0;
     pointer-events: none;
-    transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Slightly faster fade out for box */
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Faster fade out for box itself */
 }
 
 .whisper-box.opening .box-lid {
-    transform: rotateX(100deg) translateY(-30px) translateZ(50px); /* Lift and push forward more */
+    transform: rotateX(110deg) translateY(-40px) translateZ(60px); /* Lid opens further */
     transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Faster lid opening */
 }
 
+.whisper-box.opening .box-glow { /* Glow appears when box opens */
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1s ease-out 0.3s, transform 1s ease-out 0.3s; /* Delay glow slightly */
+}
+
 .whisper-box.opening .pop-up-message {
-    top: 15%; /* Pop up significantly */
+    top: 15%; /* Message pops up to visible position */
     opacity: 1;
     transform: scale(1);
     z-index: 5; /* Bring to front */
 }
 
 
-/* --- Encouragement Content Styling (Opened State) --- */
-.encouragement-content {
-    background-color: var(--card-bg); /* Use card-bg for main content background */
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3); /* Deeper, softer shadow */
-    width: 85%;
-    max-width: 1000px; /* Wider content area */
+/* --- Message Display Styling (Full screen after box opening) --- */
+.message-display {
+    background-color: var(--white);
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 1100px;
     text-align: center;
     opacity: 0;
     transform: scale(0.7);
-    transition: opacity 1.2s ease-in-out 2.5s, transform 1.2s ease-in-out 2.5s; /* Longer delay after pop-up */
+    /* Main content appears after the pop-up message animation sequence */
+    transition: opacity 1.5s ease-in-out 2.8s, transform 1.5s ease-in-out 2.8s;
     position: absolute;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80vh;
 }
 
-.encouragement-content.visible {
+.message-display.visible {
     opacity: 1;
     transform: scale(1);
     z-index: 5;
 }
 
-.encouragement-content h2 {
+.message-display h2 {
     font-family: 'Playfair Display', serif;
     color: var(--text-color-dark);
-    margin-bottom: 40px;
-    font-size: 3.2em; /* Larger heading */
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.1);
+    margin-bottom: 50px;
+    font-size: 3.5em;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.1);
+    letter-spacing: 1px;
+    font-weight: 900;
+}
+
+.message-card-wrapper { /* Wrapper to center and control single card */
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    min-height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    perspective: 1000px; /* For 3D card animation */
+}
+
+.message-card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    box-shadow: 0 10px 30px var(--shadow-soft);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Allows cards to be animated in/out of view */
+    top: 0;
+    left: 0;
+    opacity: 0; /* Hidden by default for animation */
+    transform: translateY(20px) scale(0.9);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Card animation */
+}
+
+.message-card.active { /* Class to make card visible and animate in */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    position: relative; /* Takes up space when active */
+}
+
+.message-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color-dark);
+    margin-top: 0;
+    font-size: 2.5em;
+    margin-bottom: 25px;
     letter-spacing: 1px;
     font-weight: 700;
 }
 
-.encouragement-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 35px; /* More space between cards */
-    max-height: 550px; /* Increased height */
-    overflow-y: auto;
-    padding: 15px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--button-bg) var(--card-bg);
-}
-.encouragement-cards-container::-webkit-scrollbar {
-    width: 10px; /* Wider scrollbar */
-}
-.encouragement-cards-container::-webkit-scrollbar-track {
-    background: var(--card-bg);
-    border-radius: 10px;
-}
-.encouragement-cards-container::-webkit-scrollbar-thumb {
-    background-color: var(--button-bg);
-    border-radius: 10px;
-    border: 2px solid var(--card-bg);
-}
-
-
-.encouragement-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 18px; /* Even more rounded cards */
-    padding: 30px; /* More padding */
-    width: 320px; /* Wider cards */
-    box-shadow: 0 8px 25px var(--shadow-soft); /* Softer card shadow */
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background-color 0.3s ease; /* Slight bounce on hover */
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 250px; /* Taller cards for more impact */
-}
-
-.encouragement-card:hover {
-    transform: translateY(-10px) scale(1.04); /* Lift more, scale slightly */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
-    background-color: #fcfdfe; /* Subtle change on hover */
-}
-
-.encouragement-card h3 {
-    font-family: 'Playfair Display', serif;
-    color: var(--text-color-dark);
-    margin-top: 0;
-    font-size: 2em; /* Larger title for impact */
-    margin-bottom: 20px;
-    letter-spacing: 0.8px;
-    font-weight: 700;
-}
-
-.encouragement-card p {
-    font-family: 'Lora', serif; /* Consistent elegant font */
+.message-card p {
+    font-family: 'Lora', serif;
     color: var(--text-color-light);
-    font-size: 1.3em; /* Larger text for readability */
-    line-height: 1.8; /* More line spacing */
+    font-size: 1.4em;
+    line-height: 1.9;
     flex-grow: 1;
-    font-weight: 400; /* Regular weight for paragraph text */
+    font-weight: 400;
+    max-width: 90%;
+    margin: 0 auto 30px auto;
+}
+
+.card-interaction {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.message-nav-button {
+    background-color: var(--button-bg);
+    color: var(--white);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.message-nav-button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.message-nav-button i {
+    margin-left: 8px;
+}
+.message-nav-button:first-child i {
+    margin-left: 0; /* No margin left for Back button's icon */
+    margin-right: 8px; /* Margin right for Back button's icon */
+}
+.message-nav-button:last-child i {
+    margin-left: 8px; /* Margin left for Lanjut button's icon */
+    margin-right: 0; /* No margin right for Lanjut button's icon */
 }
 
 .close-button {
     background-color: var(--button-bg);
     color: var(--white);
     border: none;
-    padding: 18px 35px; /* Larger button */
+    padding: 18px 35px;
     border-radius: 50px;
-    font-size: 1.3em; /* Larger font */
+    font-size: 1.3em;
     cursor: pointer;
-    margin-top: 50px; /* More space */
+    margin-top: auto;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     font-weight: bold;
@@ -254,7 +334,7 @@ body {
 
 .close-button:hover {
     background-color: var(--button-hover-bg);
-    transform: translateY(-4px); /* Lift more */
+    transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
@@ -262,23 +342,98 @@ body {
     display: none;
 }
 
+/* --- Music Toggle Button --- */
+.music-toggle-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(171, 71, 188, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 100;
+}
+
+.music-toggle-button:hover {
+    background-color: rgba(136, 14, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+.music-toggle-button i {
+    pointer-events: none;
+}
+
+/* Final Animation Area (for hearts/confetti) */
+.final-animation-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Heart animation */
+@keyframes flyUpHeart {
+    0% {
+        transform: translate(0, 0) scale(0.2);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        transform: translate(calc(var(--rand-x) * 1px), -50vh) scale(1);
+    }
+    100% {
+        transform: translate(calc(var(--rand-x) * 2px), -100vh) scale(0.8);
+        opacity: 0;
+    }
+}
+
+.heart-particle {
+    position: absolute;
+    font-size: 2em;
+    color: #ff69b4; /* Hot pink */
+    animation: flyUpHeart 5s forwards ease-out;
+    bottom: 0;
+    left: var(--start-x); /* Set by JS */
+    opacity: 0;
+    transform: scale(0);
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .encouragement-content {
-        padding: 25px;
-        width: 90%;
+    .message-display {
+        padding: 30px 20px;
+        width: 95%;
+        min-height: 90vh;
     }
-    .encouragement-content h2 {
+    .message-display h2 {
         font-size: 2.5em;
+        margin-bottom: 30px;
     }
-    .encouragement-cards-container {
-        max-height: 350px;
-        gap: 20px;
+    .message-card-wrapper {
+        min-height: 300px;
     }
-    .encouragement-card {
-        width: 100%;
-        max-width: 350px;
-        padding: 20px;
+    .message-card {
+        padding: 25px;
+    }
+    .message-card h3 {
+        font-size: 2em;
+    }
+    .message-card p {
+        font-size: 1.1em;
     }
     .whisper-box {
         width: 250px;
@@ -286,5 +441,22 @@ body {
     }
     .whisper-box.closed .box-body p {
         font-size: 1.6em;
+    }
+    .pop-up-message {
+        font-size: 1.4em;
+        height: 60%;
+    }
+    .message-nav-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .close-button {
+        padding: 15px 25px;
+        font-size: 1.1em;
+    }
+    .music-toggle-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
     }
 }

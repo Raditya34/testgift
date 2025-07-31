@@ -3,27 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Gentle Whisper For You</title>
+    <title>A Box of Whispered Hopes</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div class="background-animation"></div>
+
+    <audio id="backgroundMusic" loop muted>
+        <source src="music/romantic_tune.mp3" type="audio/mpeg">
+        <source src="music/romantic_tune.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button id="musicToggleBtn" class="music-toggle-button">
+        <i class="fas fa-volume-mute"></i>
+    </button>
+
     <div class="main-container">
         <div id="whisperBox" class="whisper-box closed">
-            <div class="box-lid"></div>
+            <div class="box-glow"></div> <div class="box-lid"></div>
             <div class="box-body">
-                <p>Click to Uncover a Gentle Message...</p>
+                <p>Ketuk untuk Mengungkap Harapan...</p>
                 <div class="pop-up-message" id="popUpMessage">
-                    <span>Just a little something for you.</span>
+                    <span>Sebuah bisikan dari hati untukmu.</span>
                 </div>
             </div>
         </div>
 
-        <div id="encouragementContent" class="encouragement-content hidden">
-            <h2>Pesan Rahasia Untukmu</h2>
-            <div id="encouragementCards" class="encouragement-cards-container">
+        <div id="messageDisplay" class="message-display hidden">
+            <h2 id="mainTitle"></h2> <div class="message-card-wrapper">
+                <div id="singleMessageCard" class="message-card">
+                    <h3 id="cardTitle"></h3>
+                    <p id="cardMessage"></p>
+                    <div class="card-interaction">
+                        <button id="prevMessageBtn" class="message-nav-button hidden"><i class="fas fa-arrow-left"></i> Kembali</button>
+                        <button id="nextMessageBtn" class="message-nav-button">Lanjut <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
-            <button id="closeContentBtn" class="close-button">Tutup dan Simpan Kekuatan Ini</button>
+            </div>
+            <button id="closeDisplayBtn" class="close-button">Simpan Kekuatan Ini di Hati</button>
+            <div class="final-animation-area hidden" id="finalAnimationArea"></div>
         </div>
     </div>
 
